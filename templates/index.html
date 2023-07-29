@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plant Disease Prediction</title>
+  </head> <style>
+      body {
+        background: linear-gradient(to bottom, #34a1eb, #72bcd4);
+        color: white;
+        text-align: center;
+        padding-top: 50px;
+        font-family: Arial, sans-serif;
+      }
+      
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+      
+      form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+      
+      input[type="file"] {
+        padding: 10px;
+        border: none;
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      input[type="submit"] {
+        padding: 10px 30px;
+        background-color: #2288ee;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 30px;
+      }
+    </style>
+  <body>
+    <h1>Plant Disease Prediction</h1><br><p>*only jpeg files</p>
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+	
+        <input type="file" name="image">
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction Result: {{ prediction }}</h2>
+        {% if image_path %}
+		<img src="{{ url_for('static', filename=image_path) }}" alt="Processed Image">
+        {% endif %}
+    {% endif %}
+  </body>
+</html>
